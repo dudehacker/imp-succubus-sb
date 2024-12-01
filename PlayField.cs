@@ -15,6 +15,7 @@ namespace StorybrewScripts
     public class PlayField : StoryboardObjectGenerator
     {
 
+        [Group("Sprite")]
         [Configurable] public string JudgeSprite = "sb/judge.png";
         [Configurable] public string LaneSprite = "sb/lane.jpg";
 
@@ -24,18 +25,21 @@ namespace StorybrewScripts
 
         [Configurable] public string HoldSprite = "sb/hold.png";
 
+        [Group("Config")]
+
+        [Description("Osu Difficulty name to create the SB from")]
         [Configurable] public string OsuDifficulty = "Expert";
 
+        [Description("Reduce number to move lane up")]
         [Configurable] public int LaneYOffset = 430;
 
+        [Description("Increase number to make lane bigger")]
         [Configurable] public double LaneScale = 0.3;
 
-        [Configurable] public double HoldNoteScale = 4.8; // for 30 speed, 3.0 for 50 speed (slower)
-
-        [Configurable] public double LaneSrollSpeed = 10;
+        [Description("Change Note Speed, bigger number = slower")]
+        [Configurable] public double LaneSrollSpeed = 30;
 
         private const int endX = 320;
-        private const double distance = 320 + 106;
 
         private const double BeatDuration = 448;
 
@@ -135,7 +139,7 @@ namespace StorybrewScripts
 
         private double getStartTime(double EndTime)
         {
-            return (EndTime - LaneSrollSpeed * 30);
+            return EndTime - LaneSrollSpeed * 30;
         }
 
         private void renderSliderNote(double StartTime, double EndTime, Vector2 column)
@@ -179,7 +183,7 @@ namespace StorybrewScripts
         private double getScaleHold(double StartTime, double EndTime)
         {
             var dt = EndTime - StartTime;
-            return (dt * HoldNoteScale) / BeatDuration;
+            return dt * (150 / LaneSrollSpeed) / BeatDuration;
         }
     }
 }

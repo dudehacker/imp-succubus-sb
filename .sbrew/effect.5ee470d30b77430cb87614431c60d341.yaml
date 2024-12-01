@@ -1,0 +1,69 @@
+﻿FormatVersion: 7
+Name: "PlayField 1"
+Script: "PlayField"
+Multithreaded: No
+Config:
+  JudgeSprite:
+    Type: "System.String"
+    Value: "sb/judge.png"
+    DisplayName: "Judge Sprite"
+    BeginsGroup: "Sprite"
+  LaneSprite:
+    Type: "System.String"
+    Value: "sb/lane.jpg"
+    DisplayName: "Lane Sprite"
+  NoteSprite:
+    Type: "System.String"
+    Value: "sb/note.png"
+    DisplayName: "Note Sprite"
+  HoldNoteSprite:
+    Type: "System.String"
+    Value: "sb/hold-note2.png"
+    DisplayName: "Hold Note Sprite"
+  HoldSprite:
+    Type: "System.String"
+    Value: "sb/slider2.png"
+    DisplayName: "Hold Sprite"
+  OsuDifficulty:
+    Type: "System.String"
+    Value: "Expert"
+    DisplayName: "Osu Difficulty"
+    BeginsGroup: "Config"
+  LaneYOffset:
+    Type: "System.Int32"
+    Value: "430"
+    DisplayName: "Lane Y Offset"
+  LaneScale:
+    Type: "System.Double"
+    Value: "0.4"
+    DisplayName: "Lane Scale"
+  LaneSrollSpeed:
+    Type: "System.Double"
+    Value: "40"
+    DisplayName: "Lane Sroll Speed"
+  RandomSeed:
+    Type: "System.Int32"
+    Value: "0"
+    DisplayName: "Random Seed"
+    BeginsGroup: "Common"
+Layers:
+  b009f9fd64c24245a67a46827465a35f:
+    Name: "Lane"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
+  bf3d3bb584a945799fdb1f2e1b572ee8:
+    Name: "Left Lane Notes"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
+  077b738b0b534227b49f75ceefe95490:
+    Name: "Right Lane Notes"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
+  8cf9bb49487143cf9fbebc370d5da24a:
+    Name: "Judge"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
