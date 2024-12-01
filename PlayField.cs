@@ -35,6 +35,7 @@ namespace StorybrewScripts
         [Configurable] public double LaneSrollSpeed = 10;
 
         private const int endX = 320;
+        private const double distance = 320 + 106;
 
         private const double BeatDuration = 448;
 
@@ -49,21 +50,11 @@ namespace StorybrewScripts
             var lastObject = Map.HitObjects.Last();
 
 
-            var lane = GetLayer("Lane Left").CreateSprite(LaneSprite, OsbOrigin.Centre);
+            var lane = GetLayer("Lane").CreateSprite(LaneSprite, OsbOrigin.Centre);
 
-            lane.ScaleVec(0, 3.25, LaneScale);
+            lane.ScaleVec(0, 4, LaneScale);
             lane.MoveY(0, LaneYOffset);
-            lane.MoveX(0, -106);
             lane.Fade(0, lastObject.EndTime, 1, 1);
-
-
-
-            var laneRight = GetLayer("Lane Right").CreateSprite(LaneSprite, OsbOrigin.Centre);
-
-            laneRight.ScaleVec(0, 3.25, LaneScale);
-            laneRight.MoveY(0, LaneYOffset);
-            laneRight.MoveX(0, 746);
-            laneRight.Fade(0, lastObject.EndTime, 1, 1);
 
 
             MakeNotes();
@@ -72,11 +63,6 @@ namespace StorybrewScripts
             judge.Scale(0, LaneScale);
             judge.Fade(0, lastObject.EndTime, 1, 1);
             judge.MoveY(0, LaneYOffset);
-
-
-            var lastFrame = 1236;
-            var firstFrame = 1012;
-
 
             // renderSliderNote(1012, 1236, new Vector2(128, 192));
             // renderSliderNote(12206, 12541, new Vector2(128, 192));
@@ -121,8 +107,6 @@ namespace StorybrewScripts
                 renderTapNote(StartTime, column);
             }
 
-
-
         }
 
         private void renderTapNote(double EndTime, Vector2 column)
@@ -142,11 +126,16 @@ namespace StorybrewScripts
             }
 
 
-            var StartTime = EndTime - LaneSrollSpeed * 30;
+            var StartTime = getStartTime(EndTime);
             note.Scale(0, LaneScale);
             note.Fade(StartTime, StartTime, 0, 1);
             note.Fade(EndTime, EndTime, 1, 0);
             note.Move(StartTime, EndTime, startX, LaneYOffset, endX, LaneYOffset);
+        }
+
+        private double getStartTime(double EndTime)
+        {
+            return (EndTime - LaneSrollSpeed * 30);
         }
 
         private void renderSliderNote(double StartTime, double EndTime, Vector2 column)
@@ -157,36 +146,34 @@ namespace StorybrewScripts
 
         }
 
+        private OsbOrigin getOrigin(Vector2 column)
+        {
+            if (isLeft(column))
+            {
+                return OsbOrigin.CentreRight;
+            }
+            return OsbOrigin.CentreLeft;
+        }
+
         private void renderSliderHold(double StartTime, double EndTime, Vector2 column)
         {
             var scale = getScaleHold(StartTime, EndTime);
-            var note = GetLayer(getLaneName(column)).CreateSprite(HoldSprite, OsbOrigin.Centre);
+            var note = GetLayer(getLaneName(column)).CreateSprite(HoldSprite, getOrigin(column));
 
+            var BeforeStartTimeEarlier = getStartTime(StartTime);
             var startX = -106;
-            var dt = (EndTime - StartTime) / 2;
-            EndTime = EndTime - dt;
-
-            StartTime = EndTime - LaneSrollSpeed * 30;
 
             if (!isLeft(column))
             {
                 startX = 746;
             }
 
-            /**
+            note.ScaleVec(BeforeStartTimeEarlier, StartTime, scale, LaneScale, scale, LaneScale);
+            note.ScaleVec(StartTime, EndTime, scale, LaneScale, 0, LaneScale);
 
-                4/4 beat = 448 ms
+            note.Fade(BeforeStartTimeEarlier, 1);
 
-                1012 -> 1236 = 224 => 2/4 beat     224 / 448 * x = 2.4  , x = 4.8
-
-                12206 -> 12541 = 335 => 3/4 beat = 3.6      335 / 448 * x = 3.6,   x = 4.8
-
-            **/
-
-            note.ScaleVec(0, scale, LaneScale);
-            note.Fade(StartTime, StartTime, 0, 1);
-            note.Fade(EndTime, EndTime, 1, 0);
-            note.Move(StartTime, EndTime, startX, LaneYOffset, endX, LaneYOffset);
+            note.Move(BeforeStartTimeEarlier, StartTime, startX, LaneYOffset, endX, LaneYOffset);
         }
 
         private double getScaleHold(double StartTime, double EndTime)
