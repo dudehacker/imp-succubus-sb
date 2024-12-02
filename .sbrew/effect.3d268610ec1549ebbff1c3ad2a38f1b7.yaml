@@ -29,5 +29,5 @@ Layers:
   e8748c0a622e439faafb74065d49b89a:
     Name: ""
     OsbLayer: Overlay
-    DiffSpecific: No
+    DiffSpecific: Yes
     Visible: Yes
