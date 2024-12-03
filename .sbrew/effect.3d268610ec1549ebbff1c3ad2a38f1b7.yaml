@@ -14,7 +14,7 @@ Config:
     DisplayName: "End Time"
   SpritePath:
     Type: "System.String"
-    Value: ""
+    Value: "patch\\motion0.jpg"
     DisplayName: "Sprite Path"
     BeginsGroup: "Sprite"
   Opacity:
@@ -26,8 +26,8 @@ Config:
     DisplayName: "Random Seed"
     BeginsGroup: "Common"
 Layers:
-  e8748c0a622e439faafb74065d49b89a:
-    Name: ""
+  319837e29bad47e7b19e42ce7635a30c:
+    Name: "BG"
     OsbLayer: Overlay
     DiffSpecific: Yes
     Visible: Yes
