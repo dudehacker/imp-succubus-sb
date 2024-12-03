@@ -16,7 +16,7 @@ Config:
     DisplayName: "Beat Duration Ms"
   SpritePath:
     Type: "System.String"
-    Value: "patch\\motion.jpg"
+    Value: "patch/motion.jpg"
     DisplayName: "Sprite Path"
   FrameCount:
     Type: "System.Int32"
