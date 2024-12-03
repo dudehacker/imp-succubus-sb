@@ -26,7 +26,7 @@ Config:
     DisplayName: "Hold Sprite"
   OsuDifficulty:
     Type: "System.String"
-    Value: "Hard"
+    Value: "Expert"
     DisplayName: "Osu Difficulty"
     BeginsGroup: "Config"
   LaneYOffset:

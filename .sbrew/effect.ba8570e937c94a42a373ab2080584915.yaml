@@ -18,10 +18,26 @@ Config:
     Type: "System.String"
     Value: "patch/motion.jpg"
     DisplayName: "Sprite Path"
+  SpritePathAlt:
+    Type: "System.String"
+    Value: "patch/back.jpg"
+    DisplayName: "Sprite Path Alt"
   FrameCount:
     Type: "System.Int32"
     Value: "7"
     DisplayName: "Frame Count"
+  StopIndex:
+    Type: "System.Int32"
+    Value: "2"
+    DisplayName: "Stop Index"
+  FrameCountBack:
+    Type: "System.Int32"
+    Value: "18"
+    DisplayName: "Frame Count Back"
+  BackStopIndex:
+    Type: "System.Int32"
+    Value: "18"
+    DisplayName: "Back Stop Index"
   OsuDifficulty:
     Type: "System.String"
     Value: "Expert"
@@ -32,6 +48,11 @@ Config:
     DisplayName: "Random Seed"
     BeginsGroup: "Common"
 Layers:
+  5afa341c976a47d09a842f351cc253e3:
+    Name: "BG"
+    OsbLayer: Overlay
+    DiffSpecific: Yes
+    Visible: Yes
   4a16915f397b4344967837126dfbba19:
     Name: "Animation"
     OsbLayer: Overlay
